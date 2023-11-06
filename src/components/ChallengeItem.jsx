@@ -62,7 +62,8 @@ export default function ChallengeItem({
             {isExpanded && (
               <div>
                 <motion.p
-                  animate={{ y: [-10, 0], opacity: [0, 1] }}
+                  initial={{ height: 0 }} //added height to work properly with 'layout'
+                  animate={{ height: "auto", y: [-10, 0], opacity: [0, 1] }}
                   exit={{ y: [0, -10], opacity: [1, 0] }}
                   className="challenge-item-description"
                 >
