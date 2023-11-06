@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { ChallengesContext } from "../store/challenges-context.jsx";
 
 export default function ChallengeItem({
@@ -27,7 +27,7 @@ export default function ChallengeItem({
   }
 
   return (
-    <motion.li layout>
+    <motion.li layout exit={{ y: -30, opacity: 0 }}>
       <article className="challenge-item">
         <header>
           <img {...challenge.image} />
@@ -50,20 +50,27 @@ export default function ChallengeItem({
               View Details{" "}
               <motion.span
                 className="challenge-item-details-icon"
-                animate={{ rotate: isExpanded ? 180 : 0 }} //use of framer-motion to conditionally animate
+                animate={{ rotate: isExpanded ? 180 : 0 }}
+                //use of framer-motion to conditionally animate
+                transition={{ type: "tween" }}
               >
                 &#9650;
               </motion.span>
             </button>
           </p>
-
-          {isExpanded && (
-            <div>
-              <p className="challenge-item-description">
-                {challenge.description}
-              </p>
-            </div>
-          )}
+          <AnimatePresence>
+            {isExpanded && (
+              <div>
+                <motion.p
+                  animate={{ y: [-10, 0], opacity: [0, 1] }}
+                  exit={{ y: [0, -10], opacity: [1, 0] }}
+                  className="challenge-item-description"
+                >
+                  {challenge.description}
+                </motion.p>
+              </div>
+            )}
+          </AnimatePresence>
         </div>
       </article>
     </motion.li>
