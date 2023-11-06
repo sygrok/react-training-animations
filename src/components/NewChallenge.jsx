@@ -64,11 +64,10 @@ export default function NewChallenge({ onDone }) {
             <motion.li
               variants={{
                 hidden: { opacity: 0, scale: 0.5 },
-                visible: { opacity: 1, scale: [0.8, 1.3, 1.0] }, // scale: [0.8, 1.3, 1.0] the use of array here is similar to @keyframe
+                visible: { opacity: 1, scale: [0.8, 1.5, 1.0] }, // scale: [0.8, 1.3, 1.0] the use of array here is similar to @keyframe
               }}
               // initial="hidden"
               // animate="visible"
-              transition={{ type: "spring" }}
               key={image.alt}
               onClick={() => handleSelectImage(image)}
               className={selectedImage === image ? "selected" : undefined}
