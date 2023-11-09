@@ -23,6 +23,45 @@ export default function WelcomePage() {
   const yText = useTransform(scrollY, [0, 200, 300, 500], [0, 50, 50, 105]);
   const opacityText = useTransform(scrollY, [0, 200, 300, 500], [1, 1, 0.7, 0]);
 
+  //
+
+  const text1X = useTransform(
+    scrollY,
+    [500, 550, 750, 800],
+    [-150, 0, 0, -150]
+  );
+  const text1Opacity = useTransform(
+    scrollY,
+    [500, 550, 750, 800],
+    [0, 1, 1, 0]
+  );
+
+  const text2X = useTransform(
+    scrollY,
+    [750, 800, 950, 1100],
+    [-150, 0, 0, -150]
+  );
+  const text2Opacity = useTransform(
+    scrollY,
+    [750, 800, 950, 1100],
+    [0, 1, 1, 0]
+  );
+
+  const text3X = useTransform(
+    scrollY,
+    [1100, 1150, 1400, 1450],
+    [-150, 0, 0, 0]
+  );
+
+  const text3Opacity = useTransform(
+    scrollY,
+    [1100, 1150, 1400, 1450],
+    [0, 1, 1, 1]
+  );
+
+  const text4X = useTransform(scrollY, [1450, 1550], [-150, 0]);
+  const text4Opacity = useTransform(scrollY, [1450, 1550], [0, 1]);
+
   return (
     <>
       <header id="welcome-header">
@@ -48,26 +87,33 @@ export default function WelcomePage() {
           id="hero-image"
         />
       </header>
+
       <main id="welcome-content">
-        <section>
+        <motion.section
+          className="z"
+          style={{ x: text1X, opacity: text1Opacity }}
+        >
           <h2>There&apos;s never been a better time.</h2>
           <p>
             With our platform, you can set, track, and conquer challenges at
             your own pace. Whether it&apos;s personal growth, professional
             achievements, or just for fun, we&apos;ve got you covered.
           </p>
-        </section>
+        </motion.section>
 
-        <section>
+        <motion.section
+          viewport={{ once: true }}
+          style={{ x: text2X, opacity: text2Opacity }}
+        >
           <h2>Why Challenge Yourself?</h2>
           <p>
             Challenges provide a framework for growth. They push boundaries,
             test limits, and result in genuine progress. Here, we believe
             everyone has untapped potential, waiting to be unlocked.
           </p>
-        </section>
+        </motion.section>
 
-        <section>
+        <motion.section style={{ x: text3X, opacity: text3Opacity }}>
           <h2>Features</h2>
           <ul>
             <li>Custom challenge creation: Set the rules, define your pace.</li>
@@ -79,9 +125,9 @@ export default function WelcomePage() {
               Community Support: Join our community and get motivated by peers.
             </li>
           </ul>
-        </section>
+        </motion.section>
 
-        <section>
+        <motion.section style={{ x: text4X, opacity: text4Opacity }}>
           <h2>Join Thousands Embracing The Challenge</h2>
           <p>
             “I never realized what I was capable of until I set my first
@@ -89,7 +135,7 @@ export default function WelcomePage() {
             P.
           </p>
           {/* You can add more testimonials or even a carousel for multiple testimonials */}
-        </section>
+        </motion.section>
       </main>
     </>
   );
